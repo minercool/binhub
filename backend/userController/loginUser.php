@@ -3,7 +3,8 @@ require_once '../config.php';
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-$query = $conn->query("SELECT * FROM users WHERE email LIKE '$email'");
+$query = $conn->prepare("SELECT * FROM users WHERE email LIKE '$email'");
+$query->execute();
 $result = $query->fetch();
 if($result){
     if(password_verify($password, $result['password'])){

@@ -4,7 +4,8 @@ require_once '../config.php';
 if(isset($_SESSION['id']) && $_SESSION['id'] != null){
     $id = $_SESSION['id'];
     $password = $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $query = $conn->query("UPDATE users SET password = '$password' WHERE id LIKE '$id'");
+    $query = $conn->prepare("UPDATE users SET password = '$password' WHERE id LIKE '$id'");
+    $query->execute();
     if($query){
         header('Location: ../../frontend/login.php');
         unset($_SESSION['code']);

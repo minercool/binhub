@@ -7,7 +7,8 @@ $password = $_POST['password'];
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 if(isset($username) && isset($email) && isset($password) && isset($password)){
-    $result = $conn->query("SELECT * FROM users WHERE email LIKE '$email'");
+    $result = $conn->prepare("SELECT * FROM users WHERE email LIKE '$email'");
+    $query->execute();
     if($result->fetch() == 0){
         $result = $conn->query("INSERT INTO users VALUES('','$username','$email','$hash')");
         if($result){
