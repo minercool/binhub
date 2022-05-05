@@ -1,4 +1,8 @@
 <?php
+if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true)){
+    header('Location: ../../frontend/login.php');
+}
+
 $bank = $_POST['bank'];
 $country = $_POST['country'];
 $brand = $_POST['brand'];
