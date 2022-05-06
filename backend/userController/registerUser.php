@@ -9,9 +9,8 @@ $hash = password_hash($password, PASSWORD_DEFAULT);
 if(isset($username) && isset($email) && isset($password) && isset($password)){
     $query = $conn->prepare("SELECT * FROM users WHERE email LIKE '$email'");
     $query->execute();
-    $result = $query->fetch();
-    if($result == 0){
-        $result = $conn->query("INSERT INTO users VALUES('','$username','$email','$hash')");
+    if($query->fetch() == 0){
+        $result = $conn->query("INSERT INTO users VALUES('','$username','$email','$hash','user','yes')");
         if($result){
             $_SESSION['alert'] = '<div class="text-sm font-medium text-purple-600 dark:text-purple-400">
             Registred seccessfully!
@@ -26,7 +25,5 @@ if(isset($username) && isset($email) && isset($password) && isset($password)){
     }
     
 }
-
-
 
 ?>
