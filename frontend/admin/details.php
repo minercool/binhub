@@ -4,11 +4,12 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
     session_destroy();
     header('Location: ../login.php');
 }
+require '../../backend/adminController/showTicket.php';
+$result = $query->fetch();
 ?>
-?>
+
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -424,7 +425,7 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
             <main class="h-full overflow-y-auto">
                 <div class="container px-6 mx-auto grid">
                     <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                        Ticket: 000001
+                        Ticket: <?php echo $result['id'] ?>
                     </h2>
 
                     <!-- Cards -->
@@ -433,42 +434,33 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                             Info
                         </h4>
                         <p class="text-sm text-gray-600 dark:text-gray-400">
-                            User: Userx0112
+                            User: <?php echo $result['username'] ?>
                             <br>
-                            Date: 10-04-2022
+                            Date: <?php echo $result['date'] ?>
                             <br>
-                            Time: 14:56
+                            Time: <?php echo $result['time'] ?>
                         </p>
                         <br>
                         <p class="mb-4 text-gray-600 dark:text-gray-400">
-                            <strong>Title: </strong>Problem while adding multiple accounts
+                            <strong>Title: </strong><?php echo $result['title'] ?>
                         </p>
                         <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
-                            Details:
+                            Details: 
                         </h4>
                         <p class="mb-4 text-gray-600 dark:text-gray-400">
-                            you need 100$ for become a seller (you need to add 100$ to your balance and click to
-                            become
+                        <?php echo $result['details'] ?>
                         </p>
                         <br>
                         <p class="mb-4 text-gray-600 dark:text-gray-400">
                             <strong>Answer: </strong>
                         </p>
-                        
-                        <textarea rows="10" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"></textarea>
+                        <form method="POST" action="../../backend/adminController/updateTicket.php?id=<?php echo $result['id'] ?>">
+                        <textarea name="answer" rows="10" class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"></textarea>
 
                         <br>
 
-                        <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                            <span>Send </span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-send" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <desc>Download more icon variants from https://tabler-icons.io/i/send</desc>
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                                <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"></path>
-                            </svg>
-                        </button>
-
+                        <input type="submit" value="Send" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                        </form>
                     </div>
                 </div>
             </main>

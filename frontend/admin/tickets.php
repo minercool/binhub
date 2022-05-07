@@ -4,6 +4,7 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
     session_destroy();
     header('Location: ../login.php');
 }
+require_once '../../backend/adminController/getTickets.php';
 ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -440,24 +441,36 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                                <?php
+                                    while($result = $query->fetch()){
+                                        echo '<tr class="text-gray-700 dark:text-gray-400">
+                                        <td class="px-4 py-3">
+                                            <span>'.$result['username'].'</span>
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            <span>'.$result['title'].'</span>
+                                        </td>';
+                                        if($result['status'] == 'open'){
+                                            echo'<td class="px-4 py-3 text-xs">
+                                            <button>
+                                                <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
+                                                    Open
+                                                </span>
+                                            </button>
+                                        </td>';
+                                        }else{
+                                        echo'<td class="px-4 py-3 text-xs">
+                                        <button>
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                                Closed
+                                            </span>
+                                        </button>
+                                    </td>';
+                                        }
 
-                                    <tr class="text-gray-700 dark:text-gray-400">
-                                        <td class="px-4 py-3">
-                                            <span>User2021</span>
-                                        </td>
-                                        <td class="px-4 py-3 text-sm">
-                                            <span>Problem while adding multiple accounts</span>
-                                        </td>
-                                        <td class="px-4 py-3 text-xs">
-                                            <button>
-                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Enabled
-                                                </span>
-                                            </button>
-                                        </td>
-                                        <td class="px-4 py-3">
+                                        echo'<td class="px-4 py-3">
                                             <div class="flex items-center space-x-4 text-sm">
-                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+                                                <a href="details.php?id='.$result['id'].'" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <desc>Download more icon variants from https://tabler-icons.io/i/arrow-narrow-right</desc>
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -465,12 +478,12 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                                         <line x1="15" y1="16" x2="19" y2="12"></line>
                                                         <line x1="15" y1="8" x2="19" y2="12"></line>
                                                     </svg>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                         <td class="px-4 py-3">
                                             <div class="flex items-center space-x-4 text-sm">
-                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
+                                                <a href="../../backend/adminController/deleteTicket.php?id='.$result['id'].'" class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <desc>Download more icon variants from https://tabler-icons.io/i/trash</desc>
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -480,53 +493,13 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                                         <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
                                                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
                                                     </svg>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-400">
-                                        <td class="px-4 py-3">
-                                            <span>User2021</span>
-                                        </td>
-                                        <td class="px-4 py-3 text-sm">
-                                            <span>Problem while editing withdraw adress</span>
-                                        </td>
-                                        <td class="px-4 py-3 text-xs">
-                                            <button>
-                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
-                                                    Enabled
-                                                </span>
-                                            </button>
-                                        </td>
-                                        <td class="px-4 py-3">
-                                            <div class="flex items-center space-x-4 text-sm">
-                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                        <desc>Download more icon variants from https://tabler-icons.io/i/arrow-narrow-right</desc>
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                        <line x1="15" y1="16" x2="19" y2="12"></line>
-                                                        <line x1="15" y1="8" x2="19" y2="12"></line>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-3">
-                                            <div class="flex items-center space-x-4 text-sm">
-                                                <button class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray" aria-label="Delete">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                                        <desc>Download more icon variants from https://tabler-icons.io/i/trash</desc>
-                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                                        <line x1="4" y1="7" x2="20" y2="7"></line>
-                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    </tr>';
+                                    }
+                                ?>
+                                    
                                 </tbody>
                             </table>
                         </div>
