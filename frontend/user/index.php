@@ -69,7 +69,10 @@ if (!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true)) {
               <span class="ml-4">Rules</span>
             </a>
           </li>
-          <li class="relative px-6 py-3">
+          <?php
+          if($_SESSION['role'] == 'seller'){
+            echo '
+            <li class="relative px-6 py-3">
             <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
               <span class="inline-flex items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,7 +118,13 @@ if (!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true)) {
               </ul>
             </template>
           </li>
-          <li class="relative px-6 py-3">
+            ';
+          }
+          
+          
+          else if($_SESSION['role'] == 'admin'){
+            echo '
+            <li class="relative px-6 py-3">
             <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
               <span class="inline-flex items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -134,22 +143,25 @@ if (!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true)) {
             <template x-if="isPagesMenuOpen">
               <ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900" aria-label="submenu">
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Dashboard</a>
+                  <a class="w-full" href="../admin/index.php">Dashboard</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="addCard.html">Users</a>
+                  <a class="w-full" href="../admin/users.php">Users</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="addCard.html">Sellers</a>
+                  <a class="w-full" href="../admin/sellers.php">Sellers</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">
+                  <a class="w-full" href="../admin/tickets.php">
                     Tickets
                   </a>
                 </li>
               </ul>
             </template>
           </li>
+            ';
+          }
+          ?>
         </ul>
         <div class="px-6 my-6">
           <button class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

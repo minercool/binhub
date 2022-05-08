@@ -4,7 +4,7 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
     header('Location: ../../frontend/login.php');
 }
 
-$query = $conn->prepare("SELECT * FROM users WHERE role = 'seller' OR role = 'user'");
+$query = $conn->prepare("SELECT * FROM users WHERE role = 'seller' OR role = 'user' ORDER BY id DESC");
 $query->execute();
 
 ?>
