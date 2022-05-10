@@ -735,11 +735,9 @@ require_once '../../backend/cardController/showCards.php';
                                         <th class="px-4 py-3">Country</th>
                                         <th class="px-4 py-3">Brand</th>
                                         <th class="px-4 py-3">Bank name</th>
-                                        <th class="px-4 py-3">Level</th>
                                         <th class="px-4 py-3">Expire</th>
                                         <th class="px-4 py-3">SSN</th>
                                         <th class="px-4 py-3">DOB</th>
-                                        <th class="px-4 py-3">Description</th>
                                         <th class="px-4 py-3">Seller</th>
                                         <th class="px-4 py-3">Price</th>
                                         <th class="px-4 py-3">Buy</th>
@@ -781,9 +779,6 @@ require_once '../../backend/cardController/showCards.php';
                                             <span>' . $result['bank'] . '</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>' . $result['level'] . '</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <span>' . $result['expire'] . '</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
@@ -791,9 +786,6 @@ require_once '../../backend/cardController/showCards.php';
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <span>' . $result['dob'] . '</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>' . $result['description'] . '</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <span>' . $result['username'] . '</span>

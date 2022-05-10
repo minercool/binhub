@@ -91,29 +91,29 @@ if (!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true)) {
             <template x-if="isPagesMenuOpen">
               <ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900" aria-label="submenu">
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Seller Dashboard</a>
+                  <a class="w-full" href="../seller/index.php">Seller Dashboard</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Sales</a>
+                  <a class="w-full" href="../seller/sales.php">Sales</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="addCard.html">Add card</a>
+                  <a class="w-full" href="../seller/addAccount.php">Add card</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="addCard.html">Mass add</a>
+                  <a class="w-full" href="../seller/addAccounts.php">Mass add</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">
+                  <a class="w-full" href="../seller/soldAccounts.php">
                     Sold items
                   </a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">
+                  <a class="w-full" href="../seller/unsoldAccounts.php">
                     Unsold items
                   </a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Withdraw</a>
+                  <a class="w-full" href="../seller/withdraw.php">Withdraw</a>
                 </li>
               </ul>
             </template>
