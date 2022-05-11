@@ -394,11 +394,12 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                     </h2>
 
                     <!-- Cards -->
+                    <form method="POST" action="../../backend/sellerController/addAccounts.php">
                     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                         <div class="grid gap-6 mb-8 md:grid-cols-2">
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Mass Input</span>
-                                <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="" id="" cols="30" rows="10"></textarea>
+                                <textarea class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" name="text" id="" cols="30" rows="10"></textarea>
                             </label>
                             <div class="min-w-0 p-4 text-white bg-purple-600 rounded-lg shadow-xs">
                                 <h4 class="mb-4 font-semibold">
@@ -413,14 +414,10 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
 
                         </div>
                         <div>
-                            <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                                <span>Add To Shop</span>
-                                <svg class="w-4 h-4 ml-2 -mr-1" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
-                                    <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                                </svg>
-                            </button>
+                            <input type="submit" value="Add To Shop" class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                         </div>
                     </div>
+                    </form>
                 </div>
 
         </div>

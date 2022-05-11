@@ -392,7 +392,7 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                     </h2>
 
                     <!-- Cards -->
-                    <form method="POST" action="../../backend/sellerController/addAcount.php">
+                    <form method="POST" action="../../backend/sellerController/addAccount.php">
                         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
                             <div class="grid gap-6 mb-8 md:grid-cols-2">
                                 <label class="block text-sm">

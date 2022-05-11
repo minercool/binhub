@@ -18,7 +18,11 @@ if ($result) {
     $brand = $result->scheme;
     $type = $result->type;
     $country = $result->country->alpha2;
-    $bank = $result->bank->name;
+    if(!isset($result->bank->name)){
+        $bank = "UNKOWN";
+    }else{
+        $bank = $result->bank->name;
+    }
     if ($brand != null && $type != null && $country != null && $bank != null) {
         $firstname = $_POST['firstname'];
         $lastname = $_POST['lastname'];
@@ -28,7 +32,7 @@ if ($result) {
         $exp = strval($exp_month)."/".strval($exp_year);
         $phone = $_POST['phone'];
         $ssn = $_POST['ssn'];
-        $ccv = $_POST['ccv'];
+        $cvv = $_POST['ccv'];
         $dob = $_POST['dob'];
         $address = $_POST['address'];
         $city = $_POST['city'];
@@ -36,7 +40,7 @@ if ($result) {
         $zip_code = $_POST['zip-code'];
         $id = $_SESSION['id'];
         $price = 2;
-        $query = $conn->prepare("INSERT INTO cards VALUES('','$firstname','$lastname','$bin','$email','$type','$country','$address','$city','$state','$zip_code','$brand','$bank','$exp','$ssn','$ccv','$dob','$id','$price')");
+        $query = $conn->prepare("INSERT INTO cards VALUES('','$firstname','$lastname','$bin','$email','$type','$country','$address','$city','$state','$zip_code','$brand','$bank','$exp','$ssn','$cvv','$dob','$id','$price')");
         if($query->execute()){
             header("Location: ../../frontend/seller/addAccount.php");
         }else{
@@ -48,3 +52,4 @@ if ($result) {
 } else {
     echo "error";
 }
+?>
