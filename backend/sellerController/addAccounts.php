@@ -25,7 +25,6 @@ foreach (explode("\n", $text) as $line) {
     $short_bin = substr($bin, 0, 6);
     $request_url = $url . '/' . $short_bin;
     sleep(2.5);
-    echo $request_url . "<br>";
     $curl = curl_init($request_url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($curl);
@@ -33,7 +32,6 @@ foreach (explode("\n", $text) as $line) {
 
     $result = json_decode($response);
     if ($result) {
-        echo $result->scheme.'<br>';
         $brand = $result->scheme;
         $type = $result->type;
         $country = $result->country->alpha2;
