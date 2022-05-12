@@ -4,6 +4,7 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
     session_destroy();
     header('Location: ../../frontend/login.php');
 }
+require_once '../../backend/sellerController/unsoldAccounts.php';
 ?>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -406,99 +407,51 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                                    <tr class="text-gray-700 dark:text-gray-400">
+                                <?php
+                                        while($result = $query->fetch()){
+                                            echo '
+                                            <tr class="text-gray-700 dark:text-gray-400">
                                         <td style="font-size: 10px !important;" class="px-4 py-3">
-                                            <span>642155</span>
+                                            <span>'.$result['bin'].'</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>AMEX</span>
+                                            <span>'.$result['type'].'</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <img style="height: 10px;" src="../assets/img/flags/es.png" alt="">SPAIN
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
+                                           <span>'.$result['country'].'</span>
+                                        </td>';
+                                        if ($result['brand'] == 'amex') {
+                                            echo '<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <img style="height: 30px;" src="../assets/img/brand/amex.png" alt="">
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>FIFTH THIRD BANK</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>05/2024</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>6$</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-400">
-                                        <td style="font-size: 10px !important;" class="px-4 py-3">
-                                            <span>421136</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>VISA</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <img style="height: 10px;" src="../assets/img/flags/fr.png" alt="">FRANCE
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
+                                        </td>';
+                                        } elseif ($result['brand'] == 'visa') {
+                                            echo '<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <img style="height: 30px;" src="../assets/img/brand/visa.png" alt="">
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>FIFTH THIRD BANK</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>05/2024</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>6$</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-400">
-                                        <td style="font-size: 10px !important;" class="px-4 py-3">
-                                            <span>685544</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>DISCOVER</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <img style="height: 10px;" src="../assets/img/flags/tn.png" alt="">TUNISIA
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <img style="height: 30px;" src="../assets/img/brand/discover.png" alt="">
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>FIFTH THIRD BANK</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>05/2024</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>6$</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="text-gray-700 dark:text-gray-400">
-                                        <td style="font-size: 10px !important;" class="px-4 py-3">
-                                            <span>550795</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>MASTER CARD</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <img style="height: 10px;" src="../assets/img/flags/us.png" alt="">UNITED
-                                            STATES
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
+                                        </td>';
+                                        } elseif ($result['brand'] == 'mastercard') {
+                                            echo '<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <img style="height: 30px;" src="../assets/img/brand/mastercard.png" alt="">
+                                        </td>';
+                                        } else {
+                                            echo '<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
+                                            <img style="height: 30px;" src="../assets/img/brand/discover.png" alt="">
+                                        </td>';
+                                        }
+                                        
+                                        echo'<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
+                                            <span>'.$result['bank'].'</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>FIFTH THIRD BANK</span>
+                                            <span>'.$result['expire'].'</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>05/2024</span>
-                                        </td>
-                                        <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                            <span>6$</span>
+                                            <span>'.$result['price'].'</span>
                                         </td>
                                     </tr>
+                                    ';
+                                        }
+
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

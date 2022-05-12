@@ -396,6 +396,12 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                     <!-- Cards -->
                     <form method="POST" action="../../backend/sellerController/addAccounts.php">
                     <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                    <?php
+              if (isset($_SESSION['alert'])) {
+                echo $_SESSION['alert'];
+                $_SESSION['alert'] = null;
+              }
+              ?>
                         <div class="grid gap-6 mb-8 md:grid-cols-2">
                             <label class="block text-sm">
                                 <span class="text-gray-700 dark:text-gray-400">Mass Input</span>
@@ -410,7 +416,16 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                     card number|Expiry month|Expiry year|CVV|First Name|Last Name|Address|Zip
                                     Code|City|State|Num Phone|Email| go back to line.
                                 </p>
+                                <br>
+                                <div class="min-w-0 p-4 text-white bg-red-600 rounded-lg shadow-xs">
+                                <h4 class="mb-4 font-semibold">
+                                    NOTE 
+                                </h4>
+                                <p>
+                                Please note that this might take some time because we need to check the validity of each card you entered.                              </p>
                             </div>
+                            </div>
+                            
 
                         </div>
                         <div>

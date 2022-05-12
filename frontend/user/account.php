@@ -749,7 +749,7 @@ require_once '../../backend/cardController/showCards.php';
                                         echo '
                                         <tr class="text-gray-700 dark:text-gray-400">
                                         <td style="font-size: 10px !important;" class="px-4 py-3">
-                                            <span>' . $result['bin'] . '</span>
+                                            <span>' . substr($result['bin'],0,6) . '</span>
                                         </td>
                                         <td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
                                             <span>' . $result['type'] . '</span>

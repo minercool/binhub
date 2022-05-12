@@ -17,7 +17,8 @@ $result = json_decode($response);
 if ($result) {
     $brand = $result->scheme;
     $type = $result->type;
-    $country = $result->country->alpha2;
+    $country = $result->country->name;
+    $alpha2 = $result->country->alpha2;
     if(!isset($result->bank->name)){
         $bank = "UNKOWN";
     }else{
@@ -40,7 +41,7 @@ if ($result) {
         $zip_code = $_POST['zip-code'];
         $id = $_SESSION['id'];
         $price = 2;
-        $query = $conn->prepare("INSERT INTO cards VALUES('','$firstname','$lastname','$bin','$email','$type','$country','$address','$city','$state','$zip_code','$brand','$bank','$exp','$ssn','$cvv','$dob','$id','$price')");
+        $query = $conn->prepare("INSERT INTO cards VALUES('','$firstname','$lastname','$bin','$email','$type','$country','$alpha2','$address','$city','$state','$zip_code','$brand','$bank','$exp','$ssn','$cvv','$dob','$id','$price','unsold')");
         if($query->execute()){
             header("Location: ../../frontend/seller/addAccount.php");
         }else{

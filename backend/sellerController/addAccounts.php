@@ -34,27 +34,29 @@ foreach (explode("\n", $text) as $line) {
     if ($result) {
         $brand = $result->scheme;
         $type = $result->type;
-        $country = $result->country->alpha2;
+        $country = $result->country->name;
+        $alpha2 = $result->country->alpha2;
         if (!isset($result->bank->name)) {
             $bank = "UNKOWN";
         } else {
             $bank = $result->bank->name;
         }
         if ($brand != null && $type != null && $country != null && $bank != null) {
-
             $price = 2;
-            $query = $conn->prepare("INSERT INTO cards VALUES('','$firstname','$lastname','$bin','$email','$type','$country','$address','$city','$state','$zip_code','$brand','$bank','$exp','','$cvv','','$id','$price')");
-            if ($query->execute()) {
-                echo "done<br>";
-            } else {
-                echo $query->errorInfo();
-            }
+            $query = $conn->prepare("INSERT INTO cards VALUES('','$firstname','$lastname','$bin','$email','$type','$country','$alpha2','$address','$city','$state','$zip_code','$brand','$bank','$exp','','$cvv','','$id','$price','unsold')");
+            $query->execute();
         } else {
             echo 'null';
         }
     } else {
-        echo "error";
+        $_SESSION['alert'] = '<div class="text-sm font-medium text-purple-600 dark:text-purple-400" role="alert">
+        One or many cards are invalid but we added the valid ones.
+       </div><br>';
     }
 }
-
-?>
+if ($_SESSION['alert'] == null) {
+    $_SESSION['alert'] = '<div class="text-sm font-medium text-purple-600 dark:text-purple-400" role="alert">
+    Added successfully.
+    </div><br>';
+}
+header('Location: ../../frontend/seller/addAccounts.php');
