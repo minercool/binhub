@@ -769,7 +769,7 @@ require_once '../../backend/cardController/showCards.php';
                                         </td>';
                             } elseif ($result['brand'] == 'unionpay') {
                                 echo '<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
-                                        <img style="height: 30px;" src="../assets/img/brand/unionpay1.png" alt="">
+                                        <img style="height: 30px;" src="../assets/img/brand/unionpay.png" alt="">
                                     </td>';
                             } elseif ($result['brand'] == 'diners') {
                                 echo '<td style="font-size: 10px !important;" class="px-4 py-3 text-sm">
