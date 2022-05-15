@@ -4,7 +4,7 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
     session_destroy();
     header('Location: ../../frontend/login.php');
 }
-
+require_once '../../backend/sellerController/getStatus.php';
 ?>
 
 
@@ -565,7 +565,9 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                     Tickets
                                 </p>
                                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    0
+                                    <?php
+                                        echo $result1['nbr'];
+                                    ?>
                                 </p>
                             </div>
                         </div>
@@ -584,7 +586,9 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                     Item Sold
                                 </p>
                                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    376
+                                    <?php
+                                        echo $result2['nbr'];
+                                    ?>
                                 </p>
                             </div>
                         </div>
@@ -606,7 +610,9 @@ if(!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_S
                                     Total Sales
                                 </p>
                                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-                                    $ 46.89
+                                <?php
+                                        echo $result3['balance'];
+                                    ?>
                                 </p>
                             </div>
                         </div>

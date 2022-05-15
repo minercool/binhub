@@ -4,7 +4,7 @@ if (!(isset($_SESSION['logged'])) || ($_SESSION['logged'] != true) || !(isset($_
     header('Location: ../../frontend/login.php');
 }
 $id = $_SESSION['id'];
-$query = $conn->prepare("SELECT * FROM cards WHERE status ='sold' AND seller = '$id'");
+$query = $conn->prepare("SELECT * FROM cards WHERE status ='sold' AND seller = '$id' ORDER BY (id) DESC");
 if(!$query->execute()){
     echo '<h1>Internal error</h1>';
 }
