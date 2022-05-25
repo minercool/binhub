@@ -70,8 +70,8 @@ require_once '../../backend/cardController/getCard.php';
                         </a>
                     </li>
                     <?php
-                    if ($_SESSION['role'] == 'seller') {
-                        echo '
+          if($_SESSION['role'] == 'seller'){
+            echo '
             <li class="relative px-6 py-3">
             <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
               <span class="inline-flex items-center">
@@ -91,36 +91,39 @@ require_once '../../backend/cardController/getCard.php';
             <template x-if="isPagesMenuOpen">
               <ul x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl" x-transition:leave="transition-all ease-in-out duration-300" x-transition:leave-start="opacity-100 max-h-xl" x-transition:leave-end="opacity-0 max-h-0" class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900" aria-label="submenu">
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Seller Dashboard</a>
+                  <a class="w-full" href="../seller/index.php">Seller Dashboard</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Sales</a>
+                  <a class="w-full" href="../seller/sales.php">Sales</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="addCard.html">Add card</a>
+                  <a class="w-full" href="../seller/addAccount.php">Add card</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="addCard.html">Mass add</a>
+                  <a class="w-full" href="../seller/addAccounts.php">Mass add</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">
+                  <a class="w-full" href="../seller/soldAccounts.php">
                     Sold items
                   </a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">
+                  <a class="w-full" href="../seller/unsoldAccounts.php">
                     Unsold items
                   </a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                  <a class="w-full" href="">Withdraw</a>
+                  <a class="w-full" href="../seller/withdraw.php">Withdraw</a>
                 </li>
               </ul>
             </template>
           </li>
             ';
-                    } else if ($_SESSION['role'] == 'admin') {
-                        echo '
+          }
+          
+          
+          else if($_SESSION['role'] == 'admin'){
+            echo '
             <li class="relative px-6 py-3">
             <button class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="togglePagesMenu" aria-haspopup="true">
               <span class="inline-flex items-center">
@@ -157,8 +160,8 @@ require_once '../../backend/cardController/getCard.php';
             </template>
           </li>
             ';
-                    }
-                    ?>
+          }
+          ?>
                 </ul>
                 <div class="px-6 my-6">
                     <button class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
