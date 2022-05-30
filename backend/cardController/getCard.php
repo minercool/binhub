@@ -18,7 +18,7 @@ $arr = array(
 $array = array($bank,$country,$brand,$price);
 
 if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
-    $bank = $bank . "%";
+    $bank = "%".$bank . "%";
     $query = $conn->prepare("SELECT cards.*,username
     FROM cards,users 
     WHERE ((bank LIKE '$bank') AND (alpha2 = '$country') AND (brand = '$brand') AND (price = '$price') AND (cards.seller = users.id) AND (cards.status = 'unsold'))
@@ -28,7 +28,7 @@ if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
     //header('Location: findCcv.php');
 
 }elseif(($bank != NULL) && ($country == NULL) && ($brand == NULL) && ($price == NULL)){
-    $bank = $bank . "%";
+    $bank = "%".$bank."%";
     $query = $conn->prepare("SELECT cards.*,username
     FROM cards,users
     WHERE ((bank LIKE '$bank') AND (cards.seller = users.id) AND (cards.status = 'unsold'))
@@ -66,7 +66,7 @@ if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
 
 //////////
 }elseif(($bank != NULL) && ($country != NULL) && ($brand == NULL) && ($price == NULL)){
-    $bank = $bank . "%";
+    $bank = "%". $bank ."%";
     $query = $conn->prepare("SELECT cards.*,username
     FROM cards,users
     WHERE ((bank LIKE '$bank') AND (alpha2 = '$country') AND (cards.seller = users.id) AND (cards.status = 'unsold'))
@@ -76,7 +76,7 @@ if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
    // header('Location: ../../frontend/user/findCcv.php');
 
 }elseif(($bank != NULL) && ($country == NULL) && ($brand != NULL) && ($price == NULL)){
-    $bank = $bank . "%";
+    $bank = "%".$bank ."%";
     $query = $conn->prepare("SELECT cards.*,username
     FROM cards,users
     WHERE ((bank LIKE '$bank') AND (brand = '$brand') AND (cards.seller = users.id) AND (cards.status = 'unsold'))
@@ -86,7 +86,7 @@ if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
     //header('Location: ../../frontend/user/findCcv.php');
 
 }elseif(($bank != NULL) && ($country == NULL) && ($brand == NULL) && ($price != NULL)){
-    $bank = $bank . "%";
+    $bank = "%".$bank ."%";
     $query = $conn->prepare("SELECT cards.*,username
     FROM cards,users
     WHERE ((bank LIKE '$bank') AND (price = '$price')  AND (cards.seller = users.id) AND (cards.status = 'unsold'))
@@ -143,7 +143,7 @@ if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
     //header('Location: ../../frontend/user/findCcv.php');
 
 }elseif(($bank != NULL) && ($country != NULL) && ($brand != NULL) && ($price == NULL)){
-    $bank = $bank . "%";
+    $bank = "%".$bank . "%";
     $query = $conn->prepare("SELECT cards.*,username
     FROM cards,users
     WHERE ((bank LIKE '$bank') && (alpha2 = '$country') && (brand = '$brand')  AND (cards.seller = users.id) AND (cards.status = 'unsold'))
@@ -162,7 +162,7 @@ if($bank != NULL && $country != NULL && $brand != NULL && $price != NULL){
     //header('Location: findCcv.php');
 
 }else{
-    $bank = $bank . "%";
+    $bank = "%".$bank . "%";
     $query = $conn->prepare("SELECT cards.*,username
      FROM cards,users
     WHERE (
